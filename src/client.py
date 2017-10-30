@@ -3,10 +3,16 @@
 
 import Pyro4
 
-search = Pyro4.Proxy( "PYRONAME:crawling" )
+def main():
 
-with open( "SearchResult.txt", "w" ) as handle:
-    handle.write( search.crawl_web( "https://tunein.com", 2 ) )
-handle.close()
+    search = Pyro4.Proxy( "PYRONAME:crawling" )
+    print( 'Client started.\n' )
 
-print ('Operation completed successfully!')
+    with open( 'Search.txt', 'w' ) as handle:
+        handle.write( str( search.crawl_web( "https://tunein.com", 3 ) ) )
+    handle.close()
+
+    print( 'Success...\n' )
+
+if __name__ == "__main__":
+    main()

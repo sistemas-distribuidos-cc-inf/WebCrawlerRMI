@@ -11,7 +11,7 @@ class Crawler( object ):
         self.url = url
         try:
             with urllib.request.urlopen( self.url ) as html:
-                return html.read()
+                return str( html.read() )
         except:
             return ""
 
@@ -60,6 +60,7 @@ class Crawler( object ):
             page = tocrawl.pop()
             if page not in crawled and len( tocrawl ) < self.max_page:
                 content_page = self.get_page( page )
+                print ( self.get_page )
                 self.union( tocrawl, self.get_all_links( content_page ) )
                 crawled.append( page )
 
